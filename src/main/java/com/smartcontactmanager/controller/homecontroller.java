@@ -138,7 +138,7 @@ public class homecontroller {
 		return "login";
 	}
 
-	@PostMapping("/dologin")
+	@PostMapping("/dologin") 
 	private String Validatelogin(@Valid @ModelAttribute("login") User user,BindingResult result,
 			@RequestParam("username") String username, Model m,
 			RedirectAttributes redir,HttpServletResponse response) {
