@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<link href="/css/fontGoogle.css" rel="stylesheet">
+</head>
+
+<body>
+	<section class="d-flex justify-content-center align-items-center text-center " style="background-position:top;">
+		<div style="position: absolute;top: 12%; width: 80%; right: 0;background-size: cover;opacity: 95%;background-position:top;"
+			class="d-flex justify-content-left align-items-left text-left ashutosh">
+			<section class="homepage" id="home">
+				<div class="content text-center">
+					<div class="text">
+						<h1> Streamline Your Contact Management with Cloud-Based Solutions</h1>
+						<br>
+						<p style="color: #fff; text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);">
+							Gear up and make lasting memories.</p>
+
+					</div>
+					<a href="/user/addContact">Start Adding Your Contacts</a>
+				</div>
+			</section>
+
+		</div>
+
+
+	</section>
+
+</body>
+
+</html>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+        var token = /*[[${token}]]*/ '';  // Token from model attribute
+        if (token) {
+            localStorage.setItem("loginAuthToken", token);
+        } else {
+            console.log("No token found; you may not be authenticated.");
+        }
+ document.addEventListener("DOMContentLoaded", function () {
+    let token = localStorage.getItem("loginAuthToken"); // Retrieve JWT token
+
+    // Function to handle navigation
+    function sendRequest(method, url, formData = null) {
+        let headers = {
+            "Authorization": `Bearer ${token}`,
+        };
+
+        let options = { method, headers };
+
+        if (formData) {
+            // If the method is POST and the form contains a file input, do not set the 'Content-Type' header manually
+            if (method === "POST") {
+                options.body = formData; // Send FormData directly
+            }
+        }
+
+        fetch(url, options)
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        alert("Session expired! Please log in again.");
+                        localStorage.removeItem("loginAuthToken");
+                        window.location.href = "/login"; // Redirect to login on session expiry
+                    }
+                    throw new Error(`HTTP Error: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(htmlContent => {
+                // Replace the entire HTML content with the new page content
+                document.documentElement.innerHTML = htmlContent;
+
+                // Update the browser's URL without reloading the page
+                history.pushState({ url: url }, "", url);  // Update the URL to reflect the new page
+
+                // Re-attach event listeners for links and form submissions in the new content
+                attachNavigationListeners();
+            })
+            .catch(error => console.error("Error:", error));
+    }
+
+    // Attach click listeners for sidebar and link navigation
+    function attachNavigationListeners() {
+        // Handle Sidebar Links (GET Requests)
+        document.querySelectorAll(".sidebar_menu a").forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                let targetUrl = this.getAttribute("href");
+                sendRequest("GET", targetUrl);
+            });
+        });
+
+        // Handle all other anchor links (GET requests)
+        document.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                // Check if the link is a valid 'GET' request (not inside sidebar_menu)
+                if (this.href && !this.closest(".sidebar_menu")) {
+                    event.preventDefault(); // Prevent normal link behavior
+                    let targetUrl = this.getAttribute("href");
+                    sendRequest("GET", targetUrl);
+                }
+            });
+        });
+
+        // Handle Form Submissions (POST Requests)
+        document.querySelectorAll("form").forEach(function (form) {
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent normal form submission
+                let targetUrl = form.getAttribute("action");
+
+                let formData = new FormData(form); // This ensures proper multipart encoding
+                sendRequest("POST", targetUrl, formData); // Send formData with multipart encoding
+            });
+        });
+    }
+
+    // Handle browser back/forward actions (popstate event)
+    window.addEventListener('popstate', function (event) {
+        if (event.state && event.state.url) {
+            sendRequest("GET", event.state.url);
+        }
+    });
+
+    // Handle page refresh on initial load
+    if (window.location.pathname) {
+        // Send an initial GET request to load content for the current page
+        sendRequest("GET", window.location.pathname);
+    }
+
+    // Initialize the navigation listeners on page load
+    attachNavigationListeners();
+});
+function imageUpload(){
+
+	$(document).find("#send_photo1").click();
+	$(document).find("#send_photo1").on("change", function(){
+		$(document).find("#upload").click();
+	})
+}
+document.addEventListener("DOMContentLoaded", function () {
+  var myTimeOut;
+  var alertElement = document.getElementById('alertt');
+  var closeButton = document.querySelector('.close');
+
+  function mytimeoutfunction() {
+    if (alertElement) {
+      alertElement.style.transition = "opacity 3s";
+      alertElement.style.opacity = 0;
+    }
+  }
+
+  // Set initial timeout
+  myTimeOut = setTimeout(mytimeoutfunction, 600);
+
+  if (alertElement) {
+    alertElement.addEventListener('mouseout', function () {
+      myTimeOut = setTimeout(mytimeoutfunction, 600);
+    });
+
+    alertElement.addEventListener('mouseover', function () {
+      clearTimeout(myTimeOut);
+    });
+  }
+
+  if (closeButton) {
+    closeButton.addEventListener('click', mytimeoutfunction);
+  }
+});
+		/*]]>*/
+</script>
