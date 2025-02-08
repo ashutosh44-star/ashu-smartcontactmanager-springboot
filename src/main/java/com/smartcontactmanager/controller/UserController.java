@@ -244,7 +244,7 @@ public class UserController {
 		 * Optional<Contact> contacOptional = this.contactRepo.findById(cid); Contact
 		 * contact = contacOptional.get();   
 		 */
-		User user = repo.getUserByEmail(principal.getName());
+		User user  = repo.getUserByEmail(principal.getName());
 		m.addAttribute("title", "User Profile - "+user.getName());
 		
 		return "user/userProfile";
