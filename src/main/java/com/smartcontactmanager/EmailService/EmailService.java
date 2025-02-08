@@ -32,10 +32,9 @@ public class EmailService {
 public boolean sendEmail(String to,String message,String subject) {
  
 	boolean sent=false;
-//	String to = "ashutosh.jmd31@gmail.com";
-	String from="ashutoshchauhan149@gmail.com";
+	String from="xxxxxxxxx"; //----Used Dummy for git and now it will be skipped from next push onwards
 //	String subject="Mail sent via Smart Contact Management";
-//	String message="Message Received Successfully..!";
+//	String message="Ashu ......Message Received Successfully..!";
 	try {
 		String host="smtp.gmail.com";
 		Properties ashu=System.getProperties();
