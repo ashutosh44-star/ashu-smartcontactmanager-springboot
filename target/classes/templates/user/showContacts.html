@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+
+</head>
+
+<body>
+	<section class=" " style="background-position:top;">
+
+		 <div style="position: absolute;top: 15%; width: 85%; right: 0%;margin-left: 1%;"  class="" >
+			<p class="text-center" th:if="${head}!='View Your Contacts'" th:text="${head}"
+				style="display: block; color: azure; width:80%; padding-top: 4%;  font-size: large; font-weight: bold;">
+
+			<main th:if="${head}=='View Your Contacts'">
+				<p class="text-center" th:text="${head}"
+					style="display: block; color: azure; width:80%; padding-top: 4%;padding-bottom: 10px ; font-size: x-large; font-weight: bold;">
+
+				<div class="table-wrapper" style="position: relative;">
+					<table id="paginatedTable" class="container">
+						<thead>
+							<tr class="text-center">
+								<th>ID</th>
+								<th>Image</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Phone</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody style="background-color: ghostwhite;">
+							<tr th:each="c :${contact}">
+								<td class="text-center" th:text="${c.cid}"></td>
+								<td class="text-center">
+									<img th:src="@{'/image/'+${c.image}}"
+										style="height: 30px; width: 30px; border-radius: 50%;">
+								</td>
+								<td class="text-center"><a th:href="@{'/user/contact/'+${c.cid}}"><span
+											th:text="${c.name}"></span></a></td>
+								<td class="text-center" th:text="${c.email}"></td>
+								<td class="text-center" th:text="${c.phone}"></td>
+
+								<td class="text-center"><a th:href="@{'/user/delete/'+${c.cid}}">
+										<label class="trash" title="delete" for="delete">
+											<i class="fas fa-trash" style="cursor: pointer;font-size: 18px;"></i>
+										</label> </a>
+									&nbsp; <a th:href="@{'/user/update/'+${c.cid}}">
+										<label class="edit" title="update" for="edit">
+											<i class="fas fa-edit" style="cursor: pointer;font-size: 18px;"></i> </label>
+									</a>
+								</td>
+
+
+						</tbody>
+					</table>
+					<br />
+
+					<div class="pagination justify-content-center" style="background-color: #555;; width: 100%;padding-top: 15px;">
+
+						<ul class="pagination">
+							<li class="page-item" th:if="${currentPage >  0}">
+								<a class="page-link" th:href="@{'/user/showContacts/'+${currentPage-1}}">Previous</a>
+							</li>
+							<li th:classappend="${currentPage==i-1 ? 'active' : ''}" class="page-item"
+								th:each="i : ${#numbers.sequence(1,totalPage)}">
+								<a class="page-link" th:href="@{'/user/showContacts/'+${i-1}}"><span
+										th:text="${i}"></span></a>
+							</li>
+							<li th:if="${currentPage+1 !=  totalPage}" class="page-item">
+								<a class="page-link" th:href="@{'/user/showContacts/'+${currentPage+1}}">Next</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+
+			</main>
+
+		</div>
+	</section>
+</body>
+
+</html>
+<script>
+  
+    
+</script>
