@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"  xmlns="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
+<head>
+	<meta charset="UTF-8" />
+	<link href="/css/fontGoogle.css" rel="stylesheet">
+	<link href="/css/addContact.css" rel="stylesheet">
+</head>
+<body>
+<section class="d-flex justify-content-center align-items-center text-center " >
+	
+ <div style="position: absolute;top: 10%; width: 60%; right: 10%;"  class="d-flex justify-content-left align-items-left text-left ashutosh" >
+	 
+
+	
+
+  <div class=" container row">
+          <p class="text-right" style="display: block; color: azure; width:40%; padding-top: 2%;  margin-left: 20% ;font-size: x-large; font-weight: bold;">Add Contact</span>
+
+    <div class="container ml-2" >
+      <form class="form-group" action="/user/add_contact" required th:objet="${contact}" method="post"  enctype="multipart/form-data" >
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input class="form-control" name="name" type="text" required th:value=${contacts.name} style="color:rgb(255, 255, 255); background-color:black; opacity: 80%; ">
+        </div>
+        <div class="form-group">
+          <label for="secondname">Nickname</label>
+          <input class="form-control" name="secondname" required th:value=${contacts.secondname} type="text" style="color:rgb(255, 255, 255); background-color:black; opacity: 80%; ">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input class="form-control" name="phone" required th:value=${contacts.phone}  type="text" style="color:rgb(255, 255, 255); background-color:black; opacity: 80%; ">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-control" name="email" required th:value=${contacts.email} type="email" style="color:rgb(255, 255, 255); background-color:black; opacity: 80%; ">
+        </div>
+        <div class="form-group">
+          <label for="work">Occupation</label>
+          <input class="form-control" type="text" required th:value=${contacts.work} name="work"  style="color:rgb(255, 255, 255); background-color:black; opacity: 80%; ">
+        </div>
+        <div class="form-group " >
+          <label for="description">Contact Description</label>
+         <input class="form-control" type="text" id="description"  th:value=${contacts.description} required name="description"  style="color:rgb(255, 255, 255); background-color:black; opacity: 80%; height: 50px; 
+         white-space: pre;">
+	 
+        </div>
+        <div class="custom-file">
+			 <label for="profileImage">Your Profile Picture: 	</label>
+			<input type="file" th:value=${contacts.image} name="profileImage" />
+		</div>
+        <div class="form-group text-center ml-2" >
+         <input type="submit" class="btn btn-lg btn-success " value="Add"> </div>
+      </form>
+    </div>
+  </div>
+</div> 
+ 
+		
+	</section>
+	
+</body>
+</html>
