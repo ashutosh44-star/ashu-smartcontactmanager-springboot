@@ -36,23 +36,16 @@ public class jwtConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // Permit login and public routes without token
-                
-                // Any URL starting with '/user/' needs to be authenticated
-                .requestMatchers("/user/**").authenticated().
-                requestMatchers("/").permitAll()
-                // Other routes can be freely accessed
+                .requestMatchers("/register", "/dologin", "/login", "/logout").permitAll()
+                .requestMatchers("/user/**").authenticated()
                 .anyRequest().permitAll()
             )
             .formLogin(form -> form.loginPage("/login"))
-            .exceptionHandling(ex -> ex.authenticationEntryPoint(point))  // Custom entry point to handle unauthorized access
+            .exceptionHandling(ex -> ex.authenticationEntryPoint(point))  // Custom entry point for unauthorized access
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  // Stateless sessions
 
-            // Add the custom authentication provider for user authentication
-            .authenticationProvider(authProvider)
-
-            // Add JWT filter before Spring Security's UsernamePasswordAuthenticationFilter
-            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); 
+            .authenticationProvider(authProvider)  // Custom authentication provider
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);  // JWT filter
 
         return http.build();
     }
