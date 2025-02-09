@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<html lang="en" xmlns="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8" />
 </head>
 
-<body>
+<body th:replace="~{base :: layout}">
 	<section>
 
 		<div th:if="${param.error} or ${param.logout}" style="width: 400px; margin: 0 auto; float: inline-end;">
