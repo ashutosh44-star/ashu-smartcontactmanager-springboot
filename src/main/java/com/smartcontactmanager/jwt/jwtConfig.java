@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -32,28 +33,35 @@ public class jwtConfig {
 		return new BCryptPasswordEncoder(8);
 	}
  
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http.csrf(csrf -> csrf.disable())
+//            .authorizeHttpRequests(auth -> auth
+//                // Permit login and public routes without token
+//                
+//                // Any URL starting with '/user/' needs to be authenticated
+//                .requestMatchers("/user/**").authenticated().
+//                requestMatchers("/register","/dologin","/login","/logout").permitAll()
+//                // Other routes can be freely accessed
+//                .anyRequest().permitAll()
+//            )
+//            .formLogin(form -> form.loginPage("/login"))
+//            .exceptionHandling(ex -> ex.authenticationEntryPoint(point))  // Custom entry point to handle unauthorized access
+//            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  // Stateless sessions
+//
+//            // Add the custom authentication provider for user authentication
+//            .authenticationProvider(authProvider)
+//
+//            // Add JWT filter before Spring Security's UsernamePasswordAuthenticationFilter
+//            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); 
+//
+//        return http.build();
+//    }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                // Permit login and public routes without token
-                
-                // Any URL starting with '/user/' needs to be authenticated
-                .requestMatchers("/user/**").authenticated().
-                requestMatchers("/register","/dologin","/login","/logout").permitAll()
-                // Other routes can be freely accessed
-                .anyRequest().permitAll()
-            )
-            .formLogin(form -> form.loginPage("/login"))
-            .exceptionHandling(ex -> ex.authenticationEntryPoint(point))  // Custom entry point to handle unauthorized access
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))  // Stateless sessions
-
-            // Add the custom authentication provider for user authentication
-            .authenticationProvider(authProvider)
-
-            // Add JWT filter before Spring Security's UsernamePasswordAuthenticationFilter
-            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); 
-
+        http
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+            .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 
