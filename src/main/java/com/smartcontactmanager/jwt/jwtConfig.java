@@ -40,7 +40,7 @@ public class jwtConfig {
                 
                 // Any URL starting with '/user/' needs to be authenticated
                 .requestMatchers("/user/**").authenticated().
-                requestMatchers("/register","/dologin","/login","/logout").permitAll()
+                requestMatchers("/").permitAll()
                 // Other routes can be freely accessed
                 .anyRequest().permitAll()
             )

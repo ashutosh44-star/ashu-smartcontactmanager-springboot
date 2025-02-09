@@ -137,10 +137,10 @@ public class homecontroller {
 		m.addAttribute("title", "Login - Smart Contact Manager");
 		return "login";
 	}
-	@RequestMapping("/error")
-    public String handleError() {
-        return "login";  // Ensure error.html exists in templates folder
-    }
+//	@RequestMapping("/error")
+//    public String handleError() {
+//        return "login";  // Ensure error.html exists in templates folder
+//    }
 
 	@PostMapping("/dologin") 
 	private String Validatelogin(@Valid @ModelAttribute("login") User user,BindingResult result,
