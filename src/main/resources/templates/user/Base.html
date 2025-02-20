@@ -1,186 +1,201 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.thymeleaf.org" th:fragment="layout(content)">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="/css/style.css" rel="stylesheet">
-<!--	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
--->	<link href="/css/userstyle.css" rel="stylesheet">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/userstyle.css" rel="stylesheet">
 	<link href="/css/fontGoogle.css" rel="stylesheet">
 	<link href="/css/show.css" rel="stylesheet">
 	<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-
-	 <title th:text=${title}></title>
-	  <script src="/js/script.js" ></script>
-	 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  </head>
-  <body>	
-	   <nav class="navbar navbar-expand-lg navbar-dark  fixed-top " id="mainNav">
-  <a class="navbar-brand" href="#">Smart Contact Manager</a>
-		<p class="text-right" style="display: block; color: azure; width:40%; padding-top: 1.3%;  margin-left: 35% ;font-size: large; font-weight: bold;">Welcome <span th:text="${user.name}"></span>
- <span> &nbsp;&nbsp;<img class="send_photo_img" id="img" onclick="redirect:/user/dashboard"
-    					 th:src="@{'/image/'+${user.imageurl}}" style="height: 35px; width:35px; border-radius: 50%;cursor: pointer;"
-    					  /></span><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-<!--      <li class="nav-item active">
-        <a class="nav-link" href="/user/dashboard">HOME <span class="sr-only">(current)</span></a>
-      </li>
--->       <li class="nav-item active">
-        <a class="nav-link" href="/logout">LOGOUT</a>
-      </li>
-      
-    </ul>
-  </div>
-</nav>
-<div class="background-container">
-	<div  th:if="${type != null}" style="width:506px; float: inline-end;" >
-	<div class="alert error" style="padding-bottom: 1%">
-		<input type="checkbox" id="alert1"/>
-    
-	<div class="alert " th:classappend=${type} id="alertt">
-		<input type="checkbox" id="alert2"/>
-		<label class="close" title="close" for="alert2">
-      <i class="icon-remove"></i>
-    </label>
-		<p class="inner">
-			<span th:text=${alert}></span>
-		</p>
-	</div>
-</div>
-</div>
-	  <div class="main_box" style=" width: 265px;position: relative;">
-    <input type="checkbox" id="check">
-    <div class="btn_one">
-      <label for="check">
-        <i class="fas fa-bars" style="margin-top: 20px"></i>
-      </label>
-    </div>
-    <div class="sidebar_menu">
-      <div class="logo">
-       <a >Dashboard</a>
-          </div>
-        <div class="btn_two" >
-          <label for="check">
-            <i class="fas fa-times" style="margin-right: 50px;"></i>
-          </label>
-        </div>
-      <div class="menu">
-        <ul>
-          <li><i class="fas fa-home"></i>
-            <a href="/user/dashboard">Home</a>
-          </li>
-          <li>
-            <i class="fas fa-eye"></i>
-            <a href="/user/showContacts/0">View Contact</a>
-          </li>
-          <li>
-            <i class="fas fa-pen"></i>
-            <a href="/user/addContact">Add Contact</a>
-          </li>
-          <li>
-            <i class="fas fa-user"></i>
-            <a href="/user/userProfile">Your Profile</a>
-          </li>
-          <li>
-            <i class="fas fa-cogs"></i>
-            <a href="#">Settings</a>
-          </li>
-          <li>
-            <i class="fas fa-sign-out-alt"></i>
-            <a href="/logout">LogOut</a>
-          </li>
-        </ul>
-      </div>
-          </div>
-  </div>
-	<div th:replace="${content}"></div>
-</div>
-	  
-		
-<!--alert-->
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+	<title th:text=${title}></title>
+	<script src="/js/script.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<!-- SweetAlert2 CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 	
-   
-  
- 
-<footer style="bottom: 0; line-height:1%;position: relative;" >
-<div class="footer" >
-<div class=" text-center ashu">
-<a href="#"><i class="fab fa-facebook"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-youtube"></i></a>
-<a href="#"><i class="fab fa-twitter"></i></a>
-</div>
+</head>
 
-<div class="ashu">
-<ul>
-<li><a href="#">Contact us</a></li>
-<li><a href="#">Our Services</a></li>
-<li><a href="#">Privacy Policy</a></li>
-<li><a href="#">Terms & Conditions</a></li>
-<li><a href="#">Career</a></li>
-</ul>
-</div>
+<body>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<div class=" ashu">
-Smart Contact Manager Copyright © 2024 - All rights reserved || Designed By: Ashutosh Chauhan || Technology Used: Spring Boot
-</div>
-</div>
-</footer>
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+		<a class="navbar-brand" href="#">Smart Contact Manager</a>
+		<!-- Add data-toggle and data-target attributes to the toggler -->
+		<button class="navbar-toggler" type="button"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/user/dashboard"><i class="fas fa-home"></i> Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/user/showContacts/0"><i class="fas fa-eye"></i> View Contact</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/user/addContact"><i class="fas fa-pen"></i> Add Contact</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/user/userProfile"><i class="fas fa-user"></i> Your Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#"><i class="fas fa-cogs"></i> Settings</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> LogOut</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script src="/js/script.js" ></script>-->
+	<!-- Mobile Menu (Fullscreen Overlay) -->
+	<div id="mobileMenu" class="mobile-menu-overlay">
+		<div class="mobile-menu-content">
+			<ul>
+				<li><a href="/user/dashboard"><i class="fas fa-home"></i> Home</a></li>
+				<li><a href="/user/showContacts/0"><i class="fas fa-eye"></i> View Contact</a></li>
+				<li><a href="/user/addContact"><i class="fas fa-pen"></i> Add Contact</a></li>
+				<li><a href="/user/userProfile"><i class="fas fa-user"></i> Your Profile</a></li>
+				<li><a href="#"><i class="fas fa-cogs"></i> Settings</a></li>
+				<li><a href="/logout"><i class="fas fa-sign-out-alt"></i> LogOut</a></li>
+			</ul>
+		</div>
+	</div>
 
-  </body>
-</html>
-<script th:inline="javascript">
-  /*<![CDATA[*/
-  document.addEventListener("DOMContentLoaded", function () {
-  var myTimeOut;
-  var alertElement = document.getElementById('alertt');
-  var closeButton = document.querySelector('.close');
+	<!-- Alert Section -->
+	<div th:if="${type != null}" class="alert-container">
+		<div class="alert" th:classappend="${type}" id="alertt">
+			<div class="alert-icon">
+				<i th:if="${type == 'success'}" class="fas fa-check-circle"></i>
+				<i th:if="${type == 'error'}" class="fas fa-exclamation-circle"></i>
+				<i th:if="${type == 'info'}" class="fas fa-info-circle"></i>
+				<i th:if="${type == 'warning'}" class="fas fa-exclamation-triangle"></i>
+			</div>
+			<div class="alert-content">
+				<p class="inner" th:text="${alert}"></p>
+			</div>
+			<button class="close" onclick="closeAlert()">
+				<i class="fas fa-times"></i>
+			</button>
+		</div>
+	</div>
 
-  function mytimeoutfunction() {
-    if (alertElement) {
-      alertElement.style.transition = "opacity 3s";
-      alertElement.style.opacity = 0;
-    }
-  }
+	<!-- Main Content -->
+	<div class="background-container">
+		<section th:replace="${content}"></section>
+	</div>
 
-  // Set initial timeout
-  myTimeOut = setTimeout(mytimeoutfunction, 600);
+	<!-- Footer -->
 
-  if (alertElement) {
-    alertElement.addEventListener('mouseout', function () {
-      myTimeOut = setTimeout(mytimeoutfunction, 600);
+	<footer class="footer bg-black text-white text-center py-4">
+		<div class="container">
+			<!-- Social Media Links -->
+			<div class="social-links mb-3">
+				<a href="#" class="text-white mx-2"><i class="fab fa-facebook fa-lg"></i></a>
+				<a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+				<a href="#" class="text-white mx-2"><i class="fab fa-youtube fa-lg"></i></a>
+				<a href="#" class="text-white mx-2"><i class="fab fa-twitter fa-lg"></i></a>
+			</div>
+
+			<!-- Footer Links -->
+			<div class="footer-links mb-3">
+				<ul class="list-inline">
+					<li class="list-inline-item"><a href="#" class="text-white text-decoration-none">Contact us</a></li>
+					<li class="list-inline-item"><a href="#" class="text-white text-decoration-none">Our Services</a>
+					</li>
+					<li class="list-inline-item"><a href="#" class="text-white text-decoration-none">Privacy Policy</a>
+					</li>
+					<li class="list-inline-item"><a href="#" class="text-white text-decoration-none">Terms &
+							Conditions</a></li>
+					<li class="list-inline-item"><a href="#" class="text-white text-decoration-none">Career</a></li>
+				</ul>
+			</div>
+
+			<!-- Copyright Text -->
+			<div class="copyright">
+				<p class="mb-0 small">
+					Smart Contact Manager Copyright © 2024 - All rights reserved || Designed By: Ashutosh Chauhan
+				</p>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Optional JavaScript -->
+	
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script src="/js/script.js"></script>
+
+	<!-- Mobile Menu Script -->
+
+
+	<!-- Alert Script -->
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		document.addEventListener("DOMContentLoaded", function () {
+			const alertElement = document.getElementById('alertt');
+			const closeButton = document.querySelector('.close');
+
+			// Function to close the alert
+			function closeAlert() {
+				if (alertElement) {
+					alertElement.classList.add('hide');
+					setTimeout(() => {
+						alertElement.remove(); // Remove the alert from the DOM
+					}, 500); // Wait for the fade-out animation to finish
+				}
+			}
+
+			// Auto-close the alert after 5 seconds
+			if (alertElement) {
+				setTimeout(closeAlert, 5000); // 5000 milliseconds = 5 seconds
+			}
+
+			// Manual close button
+			if (closeButton) {
+				closeButton.addEventListener('click', closeAlert);
+			}
+		});
+    /*]]>*/
+	</script>
+	<script>
+	$(document).ready(function () {
+    const navbarToggler = $(".navbar-toggler");
+    const mobileMenu = $("#mobileMenu");
+
+    // Toggle mobile menu on button click
+    navbarToggler.on("click", function (event) {
+        event.preventDefault();
+        mobileMenu.toggleClass("active");
     });
 
-    alertElement.addEventListener('mouseover', function () {
-      clearTimeout(myTimeOut);
+    // Close mobile menu when a link is clicked
+    mobileMenu.find("a").on("click", function () {
+        mobileMenu.removeClass("active");
     });
-  }
 
-  if (closeButton) {
-    closeButton.addEventListener('click', mytimeoutfunction);
-  }
+    // Close mobile menu when clicking outside
+    $(document).on("click", function (event) {
+        if (!navbarToggler.is(event.target) && !navbarToggler.has(event.target).length &&
+            !mobileMenu.is(event.target) && !mobileMenu.has(event.target).length) {
+            mobileMenu.removeClass("active");
+        }
+    });
 });
+	</script>
+</body>
 
-		/*]]>*/
-</script>
+</html>

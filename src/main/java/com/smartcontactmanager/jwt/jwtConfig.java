@@ -36,7 +36,8 @@ public class jwtConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/register", "/dologin", "/login", "/logout").permitAll()
+                .requestMatchers("/register", "/dologin", "/login", "/logout").permitAll() 
+                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll() 
                 .requestMatchers("/user/**").authenticated()
                 .anyRequest().permitAll()
             )

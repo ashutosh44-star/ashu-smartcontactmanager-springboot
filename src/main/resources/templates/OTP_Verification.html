@@ -1,11 +1,13 @@
-
-<link href="/css/otpcss.css" rel="stylesheet">
-
-	
-<section style=" margin-top: 5%;" class="text-center">
-  <div class="title">OTP</div>
-  <svg width="250" height="200" viewBox="0 0 292 208" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_1_45)">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link href="/css/otpcss.css" rel="stylesheet">
+</head>
+<body>
+  <section style="margin-top: 5%;" class="text-center">
+    <div class="title">OTP</div>
+    <svg width="250" height="200" viewBox="0 0 292 208" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <g clip-path="url(#clip0_1_45)">
       <path d="M152.106 208C201.536 208 241.606 167.93 241.606 118.5C241.606 69.0706 201.536 29 152.106 29C102.676 29 62.6058 69.0706 62.6058 118.5C62.6058 167.93 102.676 208 152.106 208Z" fill="#C5FFFF" />
       <path d="M117.144 64.4241C113.81 64.4241 111.108 67.1261 111.108 70.46V167.057C111.108 170.391 113.81 173.093 117.144 173.093H186.572C189.906 173.093 192.608 170.391 192.608 167.057V92.382L163.507 64.4241H117.144Z" fill="#91E4FF" />
       <path d="M192.608 92.382H169.544C166.21 92.382 163.508 89.68 163.508 86.3461V64.4241L192.608 92.382Z" fill="#0CB4EA" />
@@ -46,28 +48,28 @@
 	</div>
 </div>
 </div>
-  </svg>
-  
-  <div class="title">Verification Code</div>
+    </svg>
+    <div class="title">Verification Code</div>
+    <p>We have sent a verification code to your registered Email-ID</p>
 
-  
-  <p>We have sent a verification code
-    to your EmailID</p>
-    <form th:if="${function=='register'}" class="form-group" action="/otpVerify" method="post">
-  <div id='inputs'>
-    <input class="form-group" id='input1' name="otp" type='text'  maxLength="6" />
-    <input class="form-group" th:value="${email}" id='input1' name="email" type='text' style="display: none;"  />
-       <input class="form-group" th:value="${pass}" id='input1' name="pass" type='text' style="display: none;"   />
-  </div>
-  <button>Submit</button>
-  </form>
-  
-  		<form th:if="${function=='passwordreset'}" class="form-group" action="/changeyourpassword" method="post">
-  <div id='inputs'>
-    <input class="form-group" id='input1' name="otp" type='text'  maxLength="6" />
-    <input class="form-group" th:value="${email}" id='input1' name="email" type='text' style="display: none;"  />
-  </div>
-  <button>Submit</button>
-  </form>
-</section>
+    <!-- OTP Form for Registration -->
+    <form th:if="${function == 'register'}" class="form-group" action="/otpVerify" method="post">
+      <div id="inputs">
+        <input class="form-group" id="input1" name="otp" type="text" maxlength="6" />
+        <input class="form-group" th:value="${email}" name="email" type="hidden" />
+        <input class="form-group" th:value="${pass}" name="pass" type="hidden" />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
 
+    <!-- OTP Form for Password Reset -->
+    <form th:if="${function == 'passwordreset'}" class="form-group" action="/changeyourpassword" method="post">
+      <div id="inputs">
+        <input class="form-group" id="input1" name="otp" type="text" maxlength="6" />
+        <input class="form-group" th:value="${email}" name="email" type="hidden" />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+</body>
+</html>

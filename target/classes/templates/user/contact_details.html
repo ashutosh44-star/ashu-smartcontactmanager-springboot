@@ -1,63 +1,61 @@
 <!doctype html>
-<html lang="en"  xmlns="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
 <head>
-	<meta charset="UTF-8" />
-	<link href="/css/fontGoogle.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="/css/fontGoogle.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-<section class=" d-flex " style="background-position:top">
-     	 <div style="position: absolute;top: 15%; width: 65%; right: 8%;margin-left: 18%;"  class="" >
-		  <div class="card mr-3 ml-3">
-			  <div style="color: black;font-size: 30px;padding-right: 1.5%;padding-top: 12px"class="text-right">
-			   <a th:href="@{'/user/update/'+${contact.cid}}">
-										<label class="edit" title="edit" for="edit" style="color: black;">
-											<i class="fas fa-edit" style="cursor: pointer;"></i> </label>
-									</a>
-									</div>
-			  <div class="card-body">
-				  <div class="container text-center" >
-					 <img th:src="@{'/image/'+${contact.image}}"  style="height: 100px; width: 100px; border-radius: 50%;">
-				  		<h3  th:text="${contact.name}" style="display: block; color:black; padding-top: 3% ;font-weight: bold;">
-							 </h3><p style="color:black" th:text="'('+${contact.work}+')'"></p>
+  <section class="d-flex justify-content-center align-items-center" style="background-position: top;">
+    <div class="container mt-5">
+      <!-- Edit Button -->
+      <div class="text-center mb-4">
+        <a th:href="@{'/user/update/' + ${contact.cid}}">
+          <label class="edit" title="edit" for="edit" style="color: white;">
+            <i class="fas fa-edit" style="cursor: pointer; font-size: 1.5rem;"></i>
+          </label>
+        </a>
+      </div>
 
-    <table class="table">
-    <thead>
-      <tr class="text-center">
-        <th>ID</th>
-        <td class="text-center"><span th:text="${contact.cid}"></span> </td>
-      </tr>
-    </thead>
-    <tbody style="background-color: ghostwhite;">
-      <tr class="text-center">
-        <th>Nickame</th>
-        <td class="text-center"><span th:text="${contact.secondname}"></span> </td>
-      </tr>
-       <tr class="text-center">
-        <th>Email</th>
-        <td class="text-center"><span th:text="${contact.email}"></span> </td>
-      </tr>
-       <tr class="text-center">
-        <th>Phone No</th>
-        <td class="text-center"><span th:text="${contact.phone}"></span> </td>
-      </tr>
-       <tr class="text-center">
-        <th style="padding-top: 5%;">Description</th>
-       <td><input class="form-control" type="text" disabled  th:value="${contact.description}" required name="description"  style="color:rgb(255, 255, 255); background-color:black; opacity: 80%; height: 80px; 
-         white-space: pre;"></td>
-      </tr>
+      <!-- Contact Details -->
+      <div class="text-center">
+        <!-- Contact Image -->
+        <img th:src="@{'/image/' + ${contact.image}}" 
+             style="height: 150px; width: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #007bff; margin-bottom: 20px;">
+
+        <!-- Contact Name and Work -->
+        <h1 th:text="${contact.name}" style="color: white; font-weight: bold; font-size: 2.5rem;"></h1>
+        <p th:text="'(' + ${contact.work} + ')'" style="color: white; font-size: 1.4rem; margin-bottom: 30px;"></p>
+
+        <!-- Contact Details List -->
+        <div class="text-left mx-auto" style="max-width: 500px;">
+          <div class="mb-4">
+            <h3 style="color: #007bff; font-size: 1.2rem; margin-bottom: 5px;">ID</h3>
+            <p th:text="${contact.cid}" style="color: white; font-size: 1.1rem;"></p>
+          </div>
+          <div class="mb-4">
+            <h3 style="color: #007bff; font-size: 1.2rem; margin-bottom: 5px;">Nickname</h3>
+            <p th:text="${contact.secondname}" style="color: white; font-size: 1.1rem;"></p>
+          </div>
+          <div class="mb-4">
+            <h3 style="color: #007bff; font-size: 1.2rem; margin-bottom: 5px;">Email</h3>
+            <p th:text="${contact.email}" style="color: white; font-size: 1.1rem;"></p>
+          </div>
+          <div class="mb-4">
+            <h3 style="color: #007bff; font-size: 1.2rem; margin-bottom: 5px;">Phone No</h3>
+            <p th:text="${contact.phone}" style="color: white; font-size: 1.1rem;"></p>
+          </div>
+          <div class="mb-4">
+            <h3 style="color: #007bff; font-size: 1.2rem; margin-bottom: 5px;">Description</h3>
+            <textarea class="form-control" disabled 
+                      style="background-color: black; color: white; opacity: 0.8; height: 120px; white-space: pre; border-radius: 10px;"
+                      th:text="${contact.description}"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
     
-    </tbody>
-  </table>
-  </div>
-</div>
-			  </div>
-		  </div>
-
-			  
-		</div>
- 
-		
-	</section>
-	
+  </section>
 </body>
 </html>

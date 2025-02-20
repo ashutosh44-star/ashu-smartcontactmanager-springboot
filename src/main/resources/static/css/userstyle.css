@@ -1,125 +1,56 @@
-	
-      
-      .greatVibesFont {
-        font-family : GreatVibes;
-      }
-      
-      .navbar-brand img {
-        width:100%;
-        max-width:640px;
-        position:fixed;
-        transition:all 300ms linear;
-        transform-origin: 0% 0%;
-        
-
-      }
-      
-      
-    @media screen and (max-width:100%){
-        .navbar-brand img {
-          width:100%;
-          max-width:100%;
-          position:relative;
-        }
-      }
-      
-      /*img.consize {
-        transform : translateY(-20px) scale(0.25);
-      }*/
-      #mainNav {
-        /*transition : background 100ms ;*/
-      }
-      
-      
-.footer{
-height: 10%;
-background:#000;
-padding:30px 0px;
-font-family: 'Play', sans-serif;
-text-align:center;
-}
-
-.footer .ashu{
-width:100%;
-margin:1% 0%;
-padding:0.6% 0%;
-color:gray;
-font-size:0.8em;
-}
-
-.footer .ashu a{
-text-decoration:none;
-color:gray;
-transition:0.5s;
-}
-
-.footer .ashu a:hover{
-color:#fff;
-}
-
-.footer .ashu ul{
-width:100%;
-}
-
-.footer .ashu ul li{
-display:inline-block;
-margin:0px 50px;
-}
-
-.footer .ashu a i{
-font-size:2em;
-margin:0% 1%;
-}
-
-@media (max-width:720px){
-.footer{
-text-align:left;
-padding:5%;
-}
-.footer .ashu ul li{
-display:block;
-margin:10px 0px;
-text-align:left;
-}
-.footer .ashu a i{
-margin:0% 3%;
-}
-}
-
-
-
-/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*/
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-.main_box{
+
+
+
+/* Sidebar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Main Box */
+.main_box {
+	margin-top: 100px;
   position: relative;
   background: url('side.jpeg') right no-repeat;
   background-size: cover;
   height: 100vh;
   width: 100%;
 }
-.main_box .sidebar_menu{
-  position: relative;
-  height: 97vh;
+
+/* Sidebar Menu */
+.sidebar_menu {
+  position: fixed;
+  height: 100vh;
   width: 265px;
-  left: -280px;
+  left: -265px; /* Hide sidebar by default */
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.5);
-  overflow: hidden;
   transition: all 0.3s linear;
+  z-index: 1000; /* Ensure sidebar is above other content */
 }
-.sidebar_menu .logo{
+
+/* Show sidebar when checkbox is checked */
+#check:checked ~ .sidebar_menu {
+  left: 0;
+}
+
+/* Sidebar Logo */
+.sidebar_menu .logo {
   position: absolute;
   width: 100%;
   height: 60px;
   box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.5);
 }
-.sidebar_menu .logo a{
+
+.sidebar_menu .logo a {
   color: #fff;
   font-size: 25px;
   font-weight: 500;
@@ -128,65 +59,55 @@ margin:0% 3%;
   line-height: 60px;
   text-decoration: none;
 }
-.sidebar_menu .menu{
+
+/* Sidebar Menu Items */
+.sidebar_menu .menu {
   position: absolute;
   top: 80px;
-  width:100%;
+  width: 100%;
 }
-.sidebar_menu .menu li{
+
+.sidebar_menu .menu li {
   margin-top: 6px;
   padding: 14px 20px;
 }
-.sidebar_menu .menu i{
+
+.sidebar_menu .menu i {
   color: #fff;
   font-size: 20px;
   padding-right: 8px;
 }
-.sidebar_menu .menu a{
+
+.sidebar_menu .menu a {
   color: #fff;
   font-size: 17px;
   text-decoration: none;
 }
-.sidebar_menu .menu li:hover{
+
+.sidebar_menu .menu li:hover {
   border-left: 1px solid #fff;
   box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
 }
-.sidebar_menu .social_media{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 20px;
-  list-style: none;
-  cursor: pointer;
-}
-.sidebar_menu .social_media i{
-  text-decoration: none;
-  padding: 0 5px;
-  color: #fff;
-  opacity: 0.6;
-  font-size: 20px;
-}
-.sidebar_menu .social_media i:hover{
-  opacity: 1;
-  transition: all 0.2s linear;
-  transform: scale(1.01);
-}
-#check{
+
+/* Toggle Buttons */
+#check {
   display: none;
-  
 }
-.main_box .btn_one i{
+
+.main_box .btn_one i {
   color: #fff;
   font-size: 30px;
   font-weight: 700;
-  position: absolute;
+  position: fixed; /* Fix the toggle button */
   left: 16px;
-  line-height: 60px;
+  top: 20px;
   cursor: pointer;
   opacity: 1;
-  transition: all 0.1s linear;  
+  transition: all 0.1s linear;
+  z-index: 1001; /* Ensure it's above the sidebar */
 }
- .sidebar_menu .btn_two i{
+
+.sidebar_menu .btn_two i {
   font-size: 25px;
   line-height: 60px;
   position: absolute;
@@ -195,18 +116,660 @@ margin:0% 3%;
   opacity: 0;
   transition: all 0.3s linear;
 }
-.btn_one i:hover{
+
+.btn_one i:hover {
   font-size: 29px;
 }
-.btn_two i:hover{
+
+.btn_two i:hover {
   font-size: 24px;
 }
-#check:checked ~ .sidebar_menu{
-  left: 0;
-}
-#check:checked ~ .btn_one i{
+
+#check:checked ~ .btn_one i {
   opacity: 0;
 }
-#check:checked ~ .sidebar_menu .btn_two i{
+
+#check:checked ~ .sidebar_menu .btn_two i {
   opacity: 1;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .sidebar_menu {
+    width: 100%; /* Full width on smaller screens */
+    left: -100%; /* Hide sidebar completely */
+  }
+
+  #check:checked ~ .sidebar_menu {
+    left: 0; /* Show sidebar */
+  }
+
+  .main_box .btn_one i {
+    left: 10px; /* Adjust toggle button position */
+    top: 10px;
+  }
+
+  .sidebar_menu .btn_two i {
+    left: 90%; /* Adjust close button position */
+  }
+}
+
+
+/* Add Contact Form Styling */
+.container {
+  max-width: 100%;
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-control {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.form-control:focus {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-color: #17a2b8;
+  box-shadow: none;
+}
+
+.form-control-file {
+  color: white;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    padding: 15px;
+  }
+
+  .form-control {
+    padding: 8px;
+  }
+
+  .btn-success {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 10px;
+  }
+
+  .form-control {
+    padding: 6px;
+  }
+
+  .btn-success {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Dashboard Styling */
+.content {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .btn-primary {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+}
+
+/* Alert Container */
+.alert-container {
+  position: fixed;
+  top: 80px; /* Adjust based on navbar height */
+  right: 20px;
+  z-index: 1050; /* Ensure it's above other content */
+  width: 350px; /* Fixed width for the alert */
+}
+
+/* Alert Styling */
+.alert {
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.alert.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/* Close Button */
+.alert .close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 16px;
+  padding: 0;
+  margin-left: 10px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.alert .close:hover {
+  opacity: 1;
+}
+
+/* Custom styles for better readability and beauty */
+.table thead th {
+  background-color: #343a40; /* Dark background for header */
+  color: white; /* White text for header */
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa; /* Light gray background on hover */
+}
+
+.table tbody td {
+  vertical-align: middle; /* Center-align table cells vertically */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767.98px) {
+  .table th,
+  .table td {
+    font-size: 14px; /* Smaller font size for mobile */
+    padding: 8px; /* Reduce padding for mobile */
+  }
+
+  .table-responsive {
+    border: 1px solid #dee2e6; /* Add border for better visibility */
+  }
+
+  .pagination .page-item {
+    margin: 2px; /* Add spacing between pagination buttons */
+  }
+
+  .text-center {
+    font-size: 1.2rem; /* Adjust heading font size for mobile */
+  }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767.98px) {
+  /* Reduce font size for table cells */
+  .table th,
+  .table td {
+    font-size: 12px; /* Smaller font size for mobile */
+    padding: 6px; /* Reduce padding for mobile */
+  }
+
+  /* Reduce image size for mobile */
+  .table img {
+    height: 25px !important;
+    width: 25px !important;
+  }
+
+  /* Make action buttons smaller */
+  .btn-sm {
+    padding: 0.25rem 0.5rem; /* Smaller padding for buttons */
+    font-size: 12px; /* Smaller font size for buttons */
+  }
+
+  /* Reduce spacing between buttons */
+  .btn-sm.ml-2 {
+    margin-left: 0.25rem !important;
+  }
+
+  /* Add border to table for better visibility */
+  .table-responsive {
+    border: 1px solid #dee2e6;
+  }
+
+  /* Adjust pagination for mobile */
+  .pagination .page-item {
+    margin: 1px; /* Reduce spacing between pagination buttons */
+  }
+
+  .pagination .page-link {
+    padding: 0.25rem 0.5rem; /* Smaller padding for pagination buttons */
+    font-size: 12px; /* Smaller font size for pagination buttons */
+  }
+}
+
+/* Ensure table text is white */
+.table {
+  color: white;
+}
+
+/* Ensure table header text is white */
+.table thead th {
+  color: white;
+}
+
+/* Ensure links are white */
+.table tbody a,td {
+  color: white;
+  text-decoration: none; /* Remove underline */
+}
+
+.table tbody a:hover {
+  color: #007bff; /* Blue color on hover */
+}
+
+/* Remove hover effect on table rows */
+.table tbody tr:hover {
+  background-color: transparent; /* No hover effect */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767.98px) {
+  /* Reduce padding and margins for smaller screens */
+  .card {
+    margin: 10px;
+    border-radius: 10px !important; /* Smaller border radius for mobile */
+    max-width: 100% !important; /* Ensure card doesn't overflow on small screens */
+  }
+
+  /* Adjust font sizes for mobile */
+  h3 {
+    font-size: 1.5rem !important; /* Smaller heading for mobile */
+  }
+
+  p {
+    font-size: 1rem !important; /* Smaller text for mobile */
+  }
+
+  /* Make the table more compact */
+  .table th,
+  .table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* Adjust textarea size for mobile */
+  textarea.form-control {
+    height: 80px !important; /* Shorter textarea for mobile */
+  }
+
+  /* Reduce image size for mobile */
+  img {
+    height: 100px !important;
+    width: 100px !important;
+  }
+
+  /* Adjust edit button size for mobile */
+  .edit i {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767.98px) {
+  /* Reduce padding and margins for smaller screens */
+  .card {
+    margin: 10px;
+    border-radius: 10px !important; /* Smaller border radius for mobile */
+    max-width: 100% !important; /* Ensure card doesn't overflow on small screens */
+  }
+
+  /* Adjust font sizes for mobile */
+  h3 {
+    font-size: 1.5rem !important; /* Smaller heading for mobile */
+  }
+
+  p {
+    font-size: 1rem !important; /* Smaller text for mobile */
+  }
+
+  /* Make the table more compact */
+  .table th,
+  .table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* Adjust textarea size for mobile */
+  textarea.form-control {
+    height: 80px !important; /* Shorter textarea for mobile */
+  }
+
+  /* Reduce image size for mobile */
+  img {
+    height: 100px !important;
+    width: 100px !important;
+  }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767.98px) {
+  /* Reduce padding and margins for smaller screens */
+  .card {
+    margin: 10px;
+    border-radius: 10px !important; /* Smaller border radius for mobile */
+    max-width: 100% !important; /* Ensure card doesn't overflow on small screens */
+  }
+
+  /* Adjust font sizes for mobile */
+  .text-center {
+    font-size: 1.5rem !important; /* Smaller heading for mobile */
+  }
+
+  /* Make form inputs more compact */
+  .form-control {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  /* Adjust textarea size for mobile */
+  textarea.form-control {
+    height: 80px !important; /* Shorter textarea for mobile */
+  }
+
+  /* Reduce button size for mobile */
+  .btn-lg {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+}
+/* Mobile Menu Overlay */
+
+/* Card Styling */
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+/* Contact Image */
+.card img {
+  border: 3px solid #007bff;
+  transition: transform 0.3s ease;
+}
+
+.card img:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Table Styling */
+.table th,
+.table td {
+  padding: 12px;
+}
+
+.table th {
+  font-weight: bold;
+  color: #007bff; /* Blue color for table headers */
+}
+
+/* Textarea Styling */
+textarea.form-control {
+  resize: none; /* Disable resizing */
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: 1px solid #007bff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767.98px) {
+  .card {
+    margin: 10px;
+    border-radius: 10px;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card img {
+    height: 100px;
+    width: 100px;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  textarea.form-control {
+    height: 80px;
+  }
+}
+
+.edit-button-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    @media (max-width: 768px) {
+      .edit-button-container {
+        position: static;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+    }
+    
+     .profile-image {
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #007bff;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .profile-image:hover {
+      transform: scale(1.05);
+    }
+    .upload-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .upload-form input[type="file"] {
+      display: none;
+    }
+    .upload-form button[type="submit"] {
+      display: none;
+    }
+    .details-table1 {
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .details-table th,
+    .details-table td {
+      padding: 10px;
+      text-align: center;
+    }
+    .details-table textarea {
+      background-color: black;
+      color: white;
+      opacity: 0.8;
+      height: 100px;
+      white-space: pre;
+      border-radius: 10px;
+      resize: none;
+      width: 100%;
+    }
+    .card-body1 {
+      padding: 20px;
+    }
+/* Custom Styles for Mobile */
+    @media (max-width: 767.98px) {
+      .table-responsive {
+        overflow-x: auto;
+      }
+      .table th,
+      .table td {
+        white-space: nowrap; /* Prevent text wrapping */
+      }
+      .table img {
+        height: 25px;
+        width: 25px; /* Smaller image for mobile */
+      }
+      .btn-sm {
+        padding: 0.25rem 0.5rem; /* Smaller buttons for mobile */
+        font-size: 0.875rem;
+      }
+    }
+    
+  /* Footer Styles */
+.footer {
+  background-color: black; /* Black background */
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer .social-links a {
+  color: white;
+  margin: 0 10px;
+  font-size: 1.5rem; /* Larger icons */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .social-links a:hover {
+  color: #007bff; /* Blue hover effect */
+  transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.footer .footer-links ul {
+  padding: 0;
+  list-style: none;
+}
+
+.footer .footer-links ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.footer .footer-links ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer .footer-links ul li a:hover {
+  color: #007bff; /* Blue hover effect */
+}
+
+.footer .copyright p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8; /* Slightly faded for elegance */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 767.98px) {
+  .footer .footer-links ul li {
+    display: block;
+    margin: 10px 0; /* Stack links vertically */
+  }
+
+  .footer .social-links a {
+    font-size: 1.8rem; /* Larger icons for mobile */
+    margin: 0 15px;
+  }
+
+  .footer .copyright p {
+    font-size: 0.8rem;
+  }
+
+  .footer .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

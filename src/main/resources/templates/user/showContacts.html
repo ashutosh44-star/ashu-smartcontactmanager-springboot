@@ -1,88 +1,82 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
-
 <head>
-	<meta charset="UTF-8" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
-
 <body>
-	<section class=" " style="background-position:top;">
+  <section class="d-flex justify-content-center align-items-center">
+    <div class="container mt-5">
+      <!-- Display the heading -->
+      <p class="text-center mb-4" th:if="${head} != 'View Your Contacts'" th:text="${head}"
+         style="color: azure; font-size: 1.5rem; font-weight: bold;">
+      </p>
 
-		 <div style="position: absolute;top: 15%; width: 85%; right: 0%;margin-left: 1%;"  class="" >
-			<p class="text-center" th:if="${head}!='View Your Contacts'" th:text="${head}"
-				style="display: block; color: azure; width:80%; padding-top: 4%;  font-size: large; font-weight: bold;">
+      <!-- Main content for "View Your Contacts" -->
+      <main th:if="${head} == 'View Your Contacts'">
+        <p class="text-center mb-4" th:text="${head}"
+           style="color: azure; font-size: 2rem; font-weight: bold;">
+        </p>
 
-			<main th:if="${head}=='View Your Contacts'">
-				<p class="text-center" th:text="${head}"
-					style="display: block; color: azure; width:80%; padding-top: 4%;padding-bottom: 10px ; font-size: x-large; font-weight: bold;">
+        <!-- Table to display contacts -->
+        <div class="table-responsive rounded shadow-sm"> <!-- Make table scrollable on small screens -->
+          <table id="paginatedTable" class="table table-hover table-bordered" style="background-color: #343a40; color: white;">
+            <thead class="thead-dark">
+              <tr class="text-center">
+                <th>ID</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="c : ${contact}">
+                <td class="text-center align-middle" th:text="${c.cid}"></td>
+                <td class="text-center align-middle">
+                  <img th:src="@{'/image/' + ${c.image}}"
+                       style="height: 30px; width: 30px; border-radius: 50%; object-fit: cover;">
+                </td>
+                <td class="text-center align-middle">
+                  <a th:href="@{'/user/contact/' + ${c.cid}}" class="text-decoration-none" style="color: white;">
+                    <span th:text="${c.name}"></span>
+                  </a>
+                </td>
+                <td class="text-center align-middle" th:text="${c.email}"></td>
+                <td class="text-center align-middle" th:text="${c.phone}"></td>
+                <td class="text-center align-middle">
+                  <a th:href="@{'/user/delete/' + ${c.cid}}" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                  <a th:href="@{'/user/update/' + ${c.cid}}" class="btn btn-primary btn-sm ml-2">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-				<div class="table-wrapper" style="position: relative;">
-					<table id="paginatedTable" class="container">
-						<thead>
-							<tr class="text-center">
-								<th>ID</th>
-								<th>Image</th>
-								<th>Name</th>
-								<th>Email</th>
-								<th>Phone</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody style="background-color: ghostwhite;">
-							<tr th:each="c :${contact}">
-								<td class="text-center" th:text="${c.cid}"></td>
-								<td class="text-center">
-									<img th:src="@{'/image/'+${c.image}}"
-										style="height: 30px; width: 30px; border-radius: 50%;">
-								</td>
-								<td class="text-center"><a th:href="@{'/user/contact/'+${c.cid}}"><span
-											th:text="${c.name}"></span></a></td>
-								<td class="text-center" th:text="${c.email}"></td>
-								<td class="text-center" th:text="${c.phone}"></td>
-
-								<td class="text-center"><a th:href="@{'/user/delete/'+${c.cid}}">
-										<label class="trash" title="delete" for="delete">
-											<i class="fas fa-trash" style="cursor: pointer;font-size: 18px;"></i>
-										</label> </a>
-									&nbsp; <a th:href="@{'/user/update/'+${c.cid}}">
-										<label class="edit" title="update" for="edit">
-											<i class="fas fa-edit" style="cursor: pointer;font-size: 18px;"></i> </label>
-									</a>
-								</td>
-
-
-						</tbody>
-					</table>
-					<br />
-
-					<div class="pagination justify-content-center" style="background-color: #555;; width: 100%;padding-top: 15px;">
-
-						<ul class="pagination">
-							<li class="page-item" th:if="${currentPage >  0}">
-								<a class="page-link" th:href="@{'/user/showContacts/'+${currentPage-1}}">Previous</a>
-							</li>
-							<li th:classappend="${currentPage==i-1 ? 'active' : ''}" class="page-item"
-								th:each="i : ${#numbers.sequence(1,totalPage)}">
-								<a class="page-link" th:href="@{'/user/showContacts/'+${i-1}}"><span
-										th:text="${i}"></span></a>
-							</li>
-							<li th:if="${currentPage+1 !=  totalPage}" class="page-item">
-								<a class="page-link" th:href="@{'/user/showContacts/'+${currentPage+1}}">Next</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-
-			</main>
-
-		</div>
-	</section>
+        <!-- Pagination -->
+        <div class="pagination justify-content-center mt-4">
+          <ul class="pagination pagination-sm">
+            <li class="page-item" th:if="${currentPage > 0}">
+              <a class="page-link" th:href="@{'/user/showContacts/' + ${currentPage - 1}}">Previous</a>
+            </li>
+            <li th:classappend="${currentPage == i - 1 ? 'active' : ''}" class="page-item"
+                th:each="i : ${#numbers.sequence(1, totalPage)}">
+              <a class="page-link" th:href="@{'/user/showContacts/' + ${i - 1}}">
+                <span th:text="${i}"></span>
+              </a>
+            </li>
+            <li class="page-item" th:if="${currentPage + 1 != totalPage}">
+              <a class="page-link" th:href="@{'/user/showContacts/' + ${currentPage + 1}}">Next</a>
+            </li>
+          </ul>
+        </div>
+      </main>
+    </div>
+  </section>
 </body>
-
 </html>
-<script>
-  
-    
-</script>

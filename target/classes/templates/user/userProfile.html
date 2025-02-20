@@ -1,81 +1,70 @@
 <!doctype html>
-<html lang="en"  xmlns="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
+<html lang="en" xmlns="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
 <head>
-	<meta charset="UTF-8" />
-	<link href="/css/fontGoogle.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="/css/fontGoogle.css" rel="stylesheet">
 </head>
 <body>
-<section class="d-flex " style="background-position:top">
-     	 <div style="position: absolute;top: 18%; width: 65%; right: 8%;margin-left: 18%;"  class="" >
-		  <div class="card mr-3 ml-3">
-			 <!-- <div style="color: black;font-size: 30px;padding-right: 4%;padding-top: 5px"class="text-right">
-			   <a th:href="@{'/user/update/'+${contact.cid}}">
-										<label class="edit" title="edit" for="edit" style="color: black;">
-											<i class="fas fa-edit" style="cursor: pointer;"></i> </label>
-									</a>
-									</div>-->
-			  <div class="card-body">
-				  <div class="container text-center" >
-				<!--imageeee-->	  
-					  <div class="img_upload">
-						  <form action="/user/updateImage" method="post" enctype="multipart/form-data">
-    					<img class="send_photo_img" id="img" 
-    					 th:src="@{'/image/'+${user.imageurl}}" style="height: 120px; width: 120px; border-radius: 50%;cursor: pointer;"
-    					  onclick="imageUpload();"/>
-  					<!-- <img class="send_photo_img" id="send_photo1_img" th:if="${user.imageurl != null}"
-  					  src="'/image/'+${user.imageurl}" th:src="@{'/image/'+${user.imageurl}}" 
-  					  onclick="imageUpload();" title="Edit Profile Picture" 
-  					   style="height: 160px; width: 160px; border-radius: 50%;cursor: pointer;border: 1px black;"/>
--->
-  					  <input id="send_photo1"  name="imageurl" class="send_photo_input" style="display: none;" type="file"/>
-					<button id="upload" style="display: none;" value="upload"></button>
-						  </form></div>
-					<!--<div class="img_upload">
-  						  <img class="send_photo_img" id="send_photo2_img" src="assets/images/index2.png"/>
-  						  <input name="send_photo2" class="send_photo_input" type="file"/>
-						</div>  
-					  
-					  
-					 <img th:if="${user.imageurl == null}" title="Edit Profile Picture" src="/image/blank.png"   style="height: 100px; width: 100px; border-radius: 50%;">
-				 <img th:if="${user.imageurl != null}" th:src="@{'/image/'+${user.imageurl}}"  style="height: 100px; width: 100px; border-radius: 50%;">
--->
-				  		<h3  th:text="${user.name}" style="display: block; color:black; padding-top: 3% ;font-weight: bold;">
-							 </h3><p style="color:black" th:text="'('+${user.role}+')'"></p>
+  <section class="d-flex justify-content-center align-items-center" style="background-position: top;">
+    <div class="container mt-5">
+      <div class="card shadow-lg mx-auto" style="background-color: #343a40; color: white; border-radius: 15px; max-width: 100%; width: 100%;">
+        <!-- Card Body -->
+        <div class="card-body1">
+          <div class="container text-center">
+            <!-- Profile Image Upload -->
+            <div class="img_upload mb-4">
+              <form class="upload-form" action="/user/updateImage" method="post" enctype="multipart/form-data">
+                <img class="profile-image" id="img" 
+                     th:src="@{'/image/' + ${user.imageurl}}" 
+                     onclick="imageUpload();"/>
+                <input id="send_photo1" name="imageurl" class="send_photo_input" type="file"/>
+                <button id="upload" type="submit" value="upload"></button>
+              </form>
+            </div>
 
-    <table class="table">
-    <thead>
-      <tr class="text-center">
-        <th>ID</th>
-        <td class="text-center"><span th:text="${user.id}"></span> </td>
-      </tr>
-    </thead>
-    <tbody style="background-color: ghostwhite;">
-       <tr class="text-center">
-        <th>Email</th>
-        <td class="text-center"><span th:text="${user.email}"></span> </td>
-      </tr>
-       <tr class="text-center">
-        <th>Enabled</th>
-        <td class="text-center"><span th:text="${user.enabled}"></span> </td>
-      </tr>
-       <tr class="text-center">
-        <th style="padding-top: 5%;">About</th>
-       <td><input class="form-control" type="text"   th:value=${user.about} required name="about"  style="color:rgb(255, 255, 255); background-color:black; opacity: 80%; height: 80px; 
-         white-space: pre;"></td>
-      </tr>
-    
-    </tbody>
-  </table>
-  </div>
-</div>
-			  </div>
-		  </div>
+            <!-- User Name and Role -->
+            <h3 th:text="${user.name}" style="color: white; font-weight: bold; font-size: 2rem;"></h3>
+            <p th:text="'(' + ${user.role} + ')'" style="color: #adb5bd; font-size: 1.2rem;"></p>
 
-			  
-		</div>
- 
-		
-	</section>
-	
+            <!-- User Details Table -->
+            <table class="table table-borderless details-table1">
+              <tbody>
+                <tr>
+                  <th>ID</th>
+                  <td th:text="${user.id}"></td>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <td th:text="${user.email}"></td>
+                </tr>
+                <tr>
+                  <th>Enabled</th>
+                  <td th:text="${user.enabled} ? 'Yes' : 'No'"></td>
+                </tr>
+                <tr>
+                  <th>About</th>
+                  <td>
+                    <textarea class="form-control" disabled th:text="${user.about}"></textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Optional JavaScript for Image Upload -->
+  <script>
+    function imageUpload() {
+      document.getElementById('send_photo1').click();
+    }
+
+    document.getElementById('send_photo1').addEventListener('change', function () {
+      document.getElementById('upload').click();
+    });
+  </script>
 </body>
 </html>

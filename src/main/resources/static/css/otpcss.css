@@ -18,8 +18,8 @@ section {
   flex-direction: column;
   justify-content: space-around;
   width: 40vw;
-  min-width: 350px;
-  height: 80vh;
+  min-width: 750px;
+  height: 50vh;
   background-color: white;
   border-radius: 12px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
@@ -155,3 +155,78 @@ button {
     border: 0px;
   }
 }
+.otp-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh; /* Full viewport height */
+      padding: 20px;
+      text-align: center;
+      width: 100%; /* Ensure it takes full width */
+    }
+
+    .otp-section .title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .otp-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .otp-section #inputs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      width: 100%; /* Ensure it takes full width */
+    }
+
+    .otp-section #inputs input {
+      width: 15%; /* Adjust based on screen size */
+      max-width: 50px; /* Limit maximum width */
+      height: 50px;
+      text-align: center;
+      font-size: 1.5rem;
+      border: 2px solid #007bff;
+      border-radius: 10px;
+    }
+
+    .otp-section button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%; /* Full width on mobile */
+      max-width: 200px; /* Limit maximum width */
+    }
+
+    .otp-section button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Mobile-specific styles */
+    @media (max-width: 767.98px) {
+      .otp-section .title {
+        font-size: 1.5rem;
+      }
+
+      .otp-section p {
+        font-size: 1rem;
+      }
+
+      .otp-section #inputs input {
+        width: 12%; /* Smaller width for mobile */
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .otp-section button {
+        font-size: 1rem;
+      }
+    }
