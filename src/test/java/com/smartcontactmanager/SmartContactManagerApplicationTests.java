@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class SmartContactManagerApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void contextLoads() { 
 	}
 
 }
