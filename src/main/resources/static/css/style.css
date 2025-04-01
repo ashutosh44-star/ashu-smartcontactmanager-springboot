@@ -407,22 +407,22 @@ h1 {
 }
 /* Footer Styles */
 .footer {
-  background-color: black; /* Black background */
+  background-color: black; /* Darker background for a more modern look */
   color: white;
-  padding: 20px 0;
+  padding: 30px 0;
   text-align: center;
 }
 
 .footer .social-links a {
   color: white;
-  margin: 0 10px;
-  font-size: 1.5rem; /* Larger icons */
+  margin: 0 15px;
+  font-size: 1.7rem; /* Slightly larger icons */
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer .social-links a:hover {
   color: #007bff; /* Blue hover effect */
-  transform: translateY(-5px); /* Slight lift on hover */
+  transform: translateY(-8px); /* Slight lift on hover */
 }
 
 .footer .footer-links ul {
@@ -432,12 +432,13 @@ h1 {
 
 .footer .footer-links ul li {
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 15px;
 }
 
 .footer .footer-links ul li a {
   color: white;
   text-decoration: none;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
@@ -448,7 +449,7 @@ h1 {
 .footer .copyright p {
   margin: 0;
   font-size: 0.9rem;
-  opacity: 0.8; /* Slightly faded for elegance */
+  opacity: 0.7; /* Slightly faded for elegance */
 }
 
 /* Mobile Responsiveness */
@@ -459,12 +460,12 @@ h1 {
   }
 
   .footer .social-links a {
-    font-size: 1.8rem; /* Larger icons for mobile */
-    margin: 0 15px;
+    font-size: 2rem; /* Larger icons for mobile */
+    margin: 0 20px;
   }
 
   .footer .copyright p {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 
   .footer .container {
