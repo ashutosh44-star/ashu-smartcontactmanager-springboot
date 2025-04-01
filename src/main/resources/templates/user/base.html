@@ -143,33 +143,34 @@
 
 
 	<!-- Alert Script -->
-	<script th:inline="javascript">
-		/*<![CDATA[*/
-		document.addEventListener("DOMContentLoaded", function () {
-			const alertElement = document.getElementById('alertt');
-			const closeButton = document.querySelector('.close');
+	<script >
 
-			// Function to close the alert
-			function closeAlert() {
-				if (alertElement) {
-					alertElement.classList.add('hide');
-					setTimeout(() => {
-						alertElement.remove(); // Remove the alert from the DOM
-					}, 500); // Wait for the fade-out animation to finish
-				}
-			}
 
-			// Auto-close the alert after 5 seconds
-			if (alertElement) {
-				setTimeout(closeAlert, 5000); // 5000 milliseconds = 5 seconds
-			}
+    const $alertElement = $('#alertt');
+    const $closeButton = $('.close');
 
-			// Manual close button
-			if (closeButton) {
-				closeButton.addEventListener('click', closeAlert);
-			}
-		});
-    /*]]>*/
+    // Function to close the alert
+     function closeAlert() {
+     
+        if ($('#alertt').length) {
+            $('#alertt').addClass('hide');
+            setTimeout(() => {
+                $('#alertt').remove(); // Remove the alert from the DOM
+            }, 500); // Wait for the fade-out animation to finish
+        }
+    }
+
+    // Auto-close the alert after 5 seconds
+    if ($('#alertt').length) {
+        setTimeout(closeAlert, 5000); // 5000 milliseconds = 5 seconds
+    }
+
+    // Manual close button
+    if ($('.close').length) {
+        $('.close').on('click', closeAlert);
+    }
+
+		   
 	</script>
 	<script>
 	$(document).ready(function () {
