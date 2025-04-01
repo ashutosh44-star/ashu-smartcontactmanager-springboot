@@ -173,28 +173,25 @@
 		   
 	</script>
 	<script>
-	$(document).ready(function () {
-    const navbarToggler = $(".navbar-toggler");
-    const mobileMenu = $("#mobileMenu");
+	$(document).on("click", function (event) {
 
-    // Toggle mobile menu on button click
-    navbarToggler.on("click", function (event) {
+    // Check if the navbar toggler was clicked
+    if ($(event.target).closest(".navbar-toggler").length) {
         event.preventDefault();
-        mobileMenu.toggleClass("active");
-    });
+        $("#mobileMenu").toggleClass("active");
+        return; // Stop further execution
+    }
 
-    // Close mobile menu when a link is clicked
-    mobileMenu.find("a").on("click", function () {
-        mobileMenu.removeClass("active");
-    });
+    // Check if a menu link was clicked and close the menu
+    if ($(event.target).closest("#mobileMenu a").length) {
+        $("#mobileMenu").removeClass("active");
+        return;
+    }
 
-    // Close mobile menu when clicking outside
-    $(document).on("click", function (event) {
-        if (!navbarToggler.is(event.target) && !navbarToggler.has(event.target).length &&
-            !mobileMenu.is(event.target) && !mobileMenu.has(event.target).length) {
-            mobileMenu.removeClass("active");
-        }
-    });
+    // If click is outside the menu and navbar, close the menu
+    if (!$(event.target).closest(".navbar-toggler, #mobileMenu").length) {
+        $("#mobileMenu").removeClass("active");
+    }
 });
 	</script>
 </body>
